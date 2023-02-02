@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
 	int outeriteration = 300;
 	double startime, finishtime;
 	int N = 64;					// Number of intervals in one dimension .			
-	startime = MPI_Wtime();
 	double h = 1.0/N; 			// mesh size
 	double error;				//to calculate Euclidean norm
 	double errorsquare;			//to calculate Euclidean norm
@@ -19,9 +18,9 @@ int main(int argc, char *argv[])
 	double midpointerror;		//error in midpoint
 	int messagerows = 2;			//Every message sent has two rows of values
 	int messagesize;				//no. of elements in message
-	MPI::Status status;			// status to be used in mpi  messages
-	
 	MPI::Init(argc, argv);		//Initializing mpi
+	MPI::Status status;			// status to be used in mpi  messages
+	startime = MPI_Wtime();
 	int P = MPI::COMM_WORLD.Get_size(); 	//get the total no. of processors
 	int rank = MPI::COMM_WORLD.Get_rank();	//get the rank of the processor in which this code is running
 
